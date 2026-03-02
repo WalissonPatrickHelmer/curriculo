@@ -1,0 +1,292 @@
+import React, { useState, useEffect } from 'react';
+import { 
+  Github, 
+  Linkedin, 
+  Mail, 
+  MessageCircle, 
+  ChevronRight, 
+  Code2, 
+  Database, 
+  BrainCircuit, 
+  User, 
+  Briefcase, 
+  GraduationCap, 
+  FileText,
+  LayoutGrid,
+  BarChart3,
+  Workflow,
+  Cpu,
+  Palette,
+  Download,
+  MapPin,
+  CheckCircle2
+} from 'lucide-react';
+
+const App = () => {
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToSection = (id) => {
+    const element = document.getElementById(id);
+    if (element) {
+      const offset = 80;
+      const bodyRect = document.body.getBoundingClientRect().top;
+      const elementRect = element.getBoundingClientRect().top;
+      const elementPosition = elementRect - bodyRect;
+      const offsetPosition = elementPosition - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+  };
+
+  const DRIVE_CV_URL = "https://drive.google.com/file/d/1873DnrIIadZ7PzL_2kNJ9v1WkpZ-6yc1/view?usp=drive_link";
+
+  const handleDownloadCV = () => {
+    window.open(DRIVE_CV_URL, '_blank');
+  };
+
+  const skills = [
+    { category: "Linguagens", icon: <Code2 className="w-5 h-5" />, items: ["Python", "HTML5", "CSS3", "SQL"] },
+    { category: "Sistemas & Dados", icon: <Database className="w-5 h-5" />, items: ["Neo4j", "Power BI", "N8N", "Excel"] },
+    { category: "Inteligência Artificial", icon: <BrainCircuit className="w-5 h-5" />, items: ["Engenharia de Prompt", "IA Generativa"] },
+    { category: "Hardware & Suporte", icon: <Cpu className="w-5 h-5" />, items: ["Montagem de PCs", "Manutenção"] },
+    { category: "Design & Web", icon: <Palette className="w-5 h-5" />, items: ["Photoshop", "CorelDraw"] },
+    { category: "Gestão", icon: <Briefcase className="w-5 h-5" />, items: ["Gestão de Equipes", "Vendas Estratégicas"] }
+  ];
+
+  const experiences = [
+    {
+      company: "2P Sacolas Personalizadas",
+      role: "CEO / Administrador",
+      period: "Atual",
+      description: "Liderança estratégica com foco em gestão de redes sociais, vendas, pós-vendas e coordenação de equipes. Responsável pelo controle financeiro integral, suprimentos e treinamentos operacionais."
+    },
+    {
+      company: "Alma Viva do Brasil",
+      role: "Telemarketing e Suporte TI",
+      period: "Anterior",
+      description: "Atendimento técnico especializado ao cliente e suporte de primeiro nível em infraestrutura de TI."
+    },
+    {
+      company: "Monticeli Buzzo (Chame o Gênio)",
+      role: "Pós-Venda e Suporte TI",
+      period: "Anterior",
+      description: "Atendimento consultivo pré e pós-vendas com foco em soluções de hardware e eletrônicos."
+    },
+    {
+      company: "Carrefour S.A.",
+      role: "Vendedor",
+      period: "Anterior",
+      description: "Atuação direta em vendas complexas, pós-vendas e gestão de inventário para otimização de estoque."
+    }
+  ];
+
+  return (
+    <div className="min-h-screen bg-[#0a0a0c] text-slate-300 selection:bg-emerald-500/30">
+      {/* Navigation */}
+      <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-[#0a0a0c]/90 backdrop-blur-md border-b border-white/10 py-4' : 'bg-transparent py-6'}`}>
+        <div className="max-w-6xl mx-auto px-6 flex justify-between items-center">
+          <div className="text-white font-bold text-xl tracking-tighter">
+            WPH<span className="text-emerald-500">.</span>
+          </div>
+          <div className="hidden lg:flex gap-8 text-[10px] font-bold uppercase tracking-[0.2em]">
+            {[
+              { label: 'Sobre', id: 'sobre' },
+              { label: 'Habilidades', id: 'habilidades' },
+              { label: 'Projetos', id: 'projetos' },
+              { label: 'Carreira', id: 'experiencia' },
+              { label: 'Formação', id: 'formacao' },
+              { label: 'Certificações', id: 'certificacoes' }
+            ].map((item) => (
+              <button key={item.id} onClick={() => scrollToSection(item.id)} className="hover:text-emerald-500 transition-colors uppercase tracking-widest">
+                {item.label}
+              </button>
+            ))}
+          </div>
+          <button onClick={() => scrollToSection('contato')} className="bg-emerald-600 hover:bg-emerald-500 text-white px-5 py-2 rounded-full text-[10px] font-black tracking-widest transition-all">
+            CONTATO
+          </button>
+        </div>
+      </nav>
+
+      {/* Hero Section */}
+      <section id="home" className="pt-48 pb-20 px-6 text-center">
+        <div className="max-w-6xl mx-auto animate-fade-in">
+          <span className="inline-block px-4 py-1 rounded-full border border-emerald-500/30 bg-emerald-500/10 text-emerald-500 text-[10px] font-black mb-6 tracking-[0.3em] uppercase">
+            Sistemas & Tecnologia
+          </span>
+          <h1 className="text-5xl md:text-7xl font-black text-white mb-6 tracking-tight">
+            Walisson Patrick Helmer
+          </h1>
+          <p className="text-lg md:text-xl text-slate-400 max-w-3xl mx-auto mb-10 leading-relaxed font-light">
+            Transicionando uma carreira de liderança executiva para o desenvolvimento de software. 
+            Focado em criar eficiência através de <strong>Python, Dados e Automação</strong>.
+          </p>
+          <div className="flex flex-wrap justify-center gap-4">
+            <button 
+              onClick={handleDownloadCV}
+              className="group bg-emerald-500 text-white px-8 py-4 rounded-xl font-bold flex items-center gap-2 hover:bg-emerald-400 transition-all shadow-xl shadow-emerald-500/10"
+            >
+              <Download className="w-5 h-5" /> Baixar Currículo
+            </button>
+            <button 
+              className="bg-slate-800 text-white border border-slate-700 px-8 py-4 rounded-xl font-bold flex items-center gap-2 hover:bg-slate-700 transition-all"
+              onClick={() => window.open('https://github.com/WalissonPatrickHelmer', '_blank')}
+            >
+              <Github className="w-5 h-5" /> GitHub
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* About Section - Updated with New Text */}
+      <section id="sobre" className="py-24 px-6 bg-[#0f0f12]">
+        <div className="max-w-4xl mx-auto">
+          <div className="flex items-center gap-3 mb-8">
+            <User className="text-emerald-500" size={20} />
+            <h2 className="text-xs font-black text-white uppercase tracking-[0.3em]">Objetivo Profissional</h2>
+          </div>
+          <div className="text-slate-400 leading-relaxed text-lg">
+            <p className="mb-6">
+              Estudante de <strong>Análise e Desenvolvimento de Sistemas</strong>, com experiência prévia em gestão de equipes, atendimento ao cliente e suporte técnico. 
+            </p>
+            <p className="border-l-4 border-emerald-500 pl-6 py-2 bg-emerald-500/5 rounded-r-xl italic">
+              "Busco oportunidade de estágio nas áreas de Desenvolvimento de Sistemas ou Suporte em TI, com foco em aplicar meus conhecimentos técnicos, aprimorar minhas habilidades práticas e contribuir para a criação de soluções eficientes, colaborando com times multidisciplinares e agregando valor ao negócio."
+            </p>
+          </div>
+          <div className="mt-12 grid grid-cols-2 md:grid-cols-3 gap-6 text-[10px] font-bold uppercase tracking-widest text-slate-500">
+            <div className="flex items-center gap-2">
+              <MapPin className="w-4 h-4 text-emerald-500" />
+              <span>Belo Horizonte, MG</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <CheckCircle2 className="w-4 h-4 text-emerald-500" />
+              <span>Disponível para Estágio</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Code2 className="w-4 h-4 text-emerald-500" />
+              <span>ADS @ Impacta</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Education Section */}
+      <section id="formacao" className="py-24 px-6">
+        <div className="max-w-4xl mx-auto">
+          <div className="flex items-center gap-3 mb-12">
+            <GraduationCap className="text-emerald-500" size={20} />
+            <h2 className="text-xs font-black text-white uppercase tracking-[0.3em]">Formação Acadêmica</h2>
+          </div>
+          <div className="grid gap-6">
+            <div className="p-8 rounded-2xl bg-[#121216] border border-emerald-500/20 hover:border-emerald-500/40 transition-all">
+              <div className="flex justify-between items-start flex-wrap gap-4">
+                <div>
+                  <h3 className="text-white font-bold text-xl mb-1">Análise e Desenvolvimento de Sistemas</h3>
+                  <p className="text-emerald-500 text-xs font-black uppercase tracking-widest">Faculdade Impacta</p>
+                </div>
+                <span className="text-[10px] font-bold bg-emerald-500/10 text-emerald-500 px-3 py-1 rounded-full border border-emerald-500/20">Previsão: Dez/2027</span>
+              </div>
+            </div>
+            <div className="p-8 rounded-2xl bg-[#121216] border border-white/5 hover:border-white/10 transition-all">
+              <div className="flex justify-between items-start flex-wrap gap-4">
+                <div>
+                  <h3 className="text-white font-bold text-xl mb-1">Técnico em Programação e Jogos Digitais</h3>
+                  <p className="text-slate-400 text-xs font-black uppercase tracking-widest">Ensino Profissionalizante</p>
+                </div>
+                <span className="text-[10px] font-bold bg-white/5 text-slate-500 px-3 py-1 rounded-full border border-white/5 uppercase">Carga Horária: 1200h</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Skills Section */}
+      <section id="habilidades" className="py-24 px-6 bg-[#0f0f12]">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-center text-white text-3xl font-black mb-16 uppercase tracking-[0.2em]">Competências Técnicas</h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {skills.map((skill, idx) => (
+              <div key={idx} className="p-8 rounded-2xl bg-[#121216] border border-white/5 group hover:border-emerald-500/30 transition-all">
+                <div className="w-12 h-12 rounded-lg bg-emerald-500/10 flex items-center justify-center text-emerald-500 mb-6 group-hover:scale-110 transition-transform">
+                  {skill.icon}
+                </div>
+                <h3 className="text-white font-bold mb-4 tracking-tight uppercase text-sm">{skill.category}</h3>
+                <div className="flex flex-wrap gap-2">
+                  {skill.items.map((item, i) => (
+                    <span key={i} className="text-[9px] font-bold uppercase tracking-wider bg-white/5 text-slate-400 px-3 py-1 rounded border border-white/5">
+                      {item}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Experience Section */}
+      <section id="experiencia" className="py-24 px-6">
+        <div className="max-w-4xl mx-auto">
+          <div className="flex items-center gap-3 mb-12">
+            <Briefcase className="text-emerald-500" size={20} />
+            <h2 className="text-xs font-black text-white uppercase tracking-[0.3em]">Trajetória Profissional</h2>
+          </div>
+          <div className="space-y-12">
+            {experiences.map((exp, idx) => (
+              <div key={idx} className="group border-l border-white/10 pl-8 relative">
+                <div className="absolute left-[-5px] top-1.5 w-[9px] h-[9px] rounded-full bg-emerald-500" />
+                <div className="flex justify-between items-baseline mb-2">
+                  <h3 className="text-white font-bold text-lg tracking-tight">{exp.company}</h3>
+                  <span className="text-slate-600 text-[10px] font-bold uppercase">{exp.period}</span>
+                </div>
+                <p className="text-emerald-500 text-xs font-black uppercase tracking-widest mb-3">{exp.role}</p>
+                <p className="text-slate-500 text-sm leading-relaxed font-light">{exp.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Footer */}
+      <footer id="contato" className="bg-black py-24 px-6 border-t border-white/5">
+        <div className="max-w-6xl mx-auto flex flex-col items-center text-center">
+          <h2 className="text-4xl font-black text-white mb-6 uppercase tracking-tighter">Vamos conversar?</h2>
+          <p className="text-slate-500 mb-12 max-w-xl text-sm uppercase tracking-widest font-bold">Belo Horizonte, MG • Lindéia • 30690-260</p>
+          <div className="flex flex-wrap justify-center gap-4 mb-16">
+            <a href="https://wa.me/5531993736336" target="_blank" className="p-4 rounded-xl bg-[#121216] border border-white/5 flex items-center gap-3 hover:border-emerald-500 transition-all group">
+              <MessageCircle className="text-emerald-500" size={18} />
+              <span className="text-[10px] font-bold text-white uppercase tracking-widest">(31) 99373-6336</span>
+            </a>
+            <a href="mailto:wpatrickhelmer@gmail.com" className="p-4 rounded-xl bg-[#121216] border border-white/5 flex items-center gap-3 hover:border-blue-500 transition-all group">
+              <Mail className="text-blue-500" size={18} />
+              <span className="text-[10px] font-bold text-white uppercase tracking-widest">wpatrickhelmer@gmail.com</span>
+            </a>
+          </div>
+          
+          <div className="flex flex-col md:flex-row justify-between items-center w-full pt-8 border-t border-white/5 gap-4">
+            <div className="text-left">
+               <p className="text-slate-400 font-black text-sm uppercase">Walisson Patrick Helmer</p>
+               <p className="text-slate-600 text-[9px] font-bold uppercase tracking-widest italic">Análise e Desenvolvimento de Sistemas</p>
+            </div>
+            <button onClick={handleDownloadCV} className="flex items-center gap-2 text-emerald-500 text-[10px] font-black uppercase hover:text-emerald-400 transition-colors">
+              <Download size={14} /> Acessar Currículo PDF
+            </button>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+};
+
+export default App;
