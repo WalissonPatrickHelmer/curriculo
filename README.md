@@ -2,7 +2,7 @@
 
 Este é o repositório do meu portfólio pessoal, desenvolvido para apresentar minha trajetória acadêmica em **Análise e Desenvolvimento de Sistemas**, minhas habilidades técnicas e experiências profissionais.
 
-O projeto está disponível online em: [Link para o seu GitHub Pages aqui]
+O projeto está disponível online em: https://walissonpatrickhelmer.github.io/curriculo/
 
 ---
 
