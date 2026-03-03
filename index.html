@@ -4,222 +4,324 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Walisson Patrick Helmer | Portfólio</title>
-    <!-- Importando CSS Externo -->
-    <link rel="stylesheet" href="style.css">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
     <!-- Font Awesome para ícones -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Estilos de Hover Adicionais para Destaque */
-        .contact-card {
+        /* Variáveis de Tema */
+        :root {
+            --bg-body: #0a0a0c;
+            --bg-card: #14141a;
+            --text-main: #ffffff;
+            --text-muted: #94a3b8;
+            --emerald: #10b981;
+            --border: rgba(255, 255, 255, 0.1);
+            --nav-bg: #0a0a0c;
+        }
+
+        body.light-theme {
+            --bg-body: #f8fafc;
+            --bg-card: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #475569;
+            --emerald: #059669;
+            --border: rgba(0, 0, 0, 0.1);
+            --nav-bg: #f8fafc;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            transition: background 0.3s, color 0.3s;
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .container.small { max-width: 800px; }
+
+        /* Navegação */
+        #navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: var(--nav-bg);
+            border-bottom: 1px solid var(--border);
+            height: 70px;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .logo { font-weight: 900; font-size: 1.5rem; color: var(--text-main); }
+        .logo span { color: var(--emerald); }
+
+        .nav-links { list-style: none; display: flex; gap: 2rem; margin: 0; padding: 0; }
+        .nav-links a { text-decoration: none; color: var(--text-muted); font-weight: 500; transition: color 0.2s; }
+        .nav-links a:hover { color: var(--emerald); }
+
+        /* Controles */
+        .theme-controls {
+            position: fixed;
+            top: 90px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 1001;
+        }
+
+        .control-btn {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            border: 1px solid var(--border);
+            background: var(--bg-card);
+            color: var(--text-main);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
             transition: all 0.3s ease;
         }
-        /* Efeito de Hover WhatsApp */
-        .contact-card.whatsapp:hover {
-            background-color: #25D366 !important;
-            color: white !important;
-            box-shadow: 0 10px 20px rgba(37, 211, 102, 0.4);
-            transform: translateY(-5px);
+
+        /* Hero */
+        .hero { padding: 150px 0 80px; text-align: center; }
+        .badge { display: inline-block; padding: 5px 15px; border: 1px solid var(--emerald); color: var(--emerald); border-radius: 50px; font-size: 0.8rem; font-weight: 700; margin-bottom: 20px; }
+        .hero h1 { font-size: 3.5rem; margin-bottom: 20px; }
+        .hero p { font-size: 1.2rem; max-width: 600px; margin: 0 auto 30px; }
+
+        .btn-primary { background: var(--emerald); color: white; padding: 12px 25px; border-radius: 8px; text-decoration: none; font-weight: 700; display: inline-flex; align-items: center; gap: 10px; }
+        .btn-secondary { background: var(--bg-card); border: 1px solid var(--border); color: var(--text-main); padding: 12px 25px; border-radius: 8px; text-decoration: none; font-weight: 700; display: inline-flex; align-items: center; gap: 10px; }
+
+        /* Estilo específico para o botão do GitHub no tema claro */
+        body.light-theme .btn-github {
+            background-color: #000000 !important;
+            color: #ffffff !important;
+            border: none;
         }
-        /* Efeito de Hover Email */
-        .contact-card.email:hover {
-            background-color: #EA4335 !important;
-            color: white !important;
-            box-shadow: 0 10px 20px rgba(234, 67, 53, 0.4);
-            transform: translateY(-5px);
+
+        /* Seções */
+        section { padding: 80px 0; }
+        .section-dark { background: var(--bg-card); }
+        .section-title { display: flex; align-items: center; gap: 15px; margin-bottom: 40px; }
+        .section-title h2 { font-size: 1.8rem; margin: 0; color: var(--text-main); }
+        
+        /* Ajuste: Títulos de seção pretos no modo claro */
+        body.light-theme .section-title h2 {
+            color: #000000 !important;
+        }
+
+        /* Grid de Habilidades */
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 40px; }
+        .skill-card { background: var(--bg-card); border: 1px solid var(--border); padding: 25px; border-radius: 12px; }
+        .skill-card i { font-size: 1.5rem; margin-bottom: 15px; }
+        .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 15px; }
+        .tags span { background: rgba(16, 185, 129, 0.1); color: var(--emerald); padding: 4px 10px; border-radius: 4px; font-size: 0.8rem; }
+
+        /* Experiência e Formação (sem caixas) */
+        .no-box { border: none !important; background: transparent !important; padding: 0 !important; margin-bottom: 30px; }
+        .no-box h3 { margin-bottom: 5px; color: var(--text-main); }
+        
+        /* Ajuste: Títulos H3 pretos no modo claro para Experiência e Formação */
+        body.light-theme .no-box h3 {
+            color: #000000 !important;
+        }
+
+        /* Timeline e Listas */
+        .time-header { display: flex; justify-content: space-between; align-items: center; }
+        .quote { border-left: 4px solid var(--emerald); padding-left: 20px; font-style: italic; color: var(--text-muted); }
+        .text-emerald { color: var(--emerald) !important; }
+        .text-center { text-align: center; }
+
+        /* Contato */
+        footer { padding: 80px 0; background: var(--bg-card); border-top: 1px solid var(--border); }
+        .contact-links { display: flex; justify-content: center; gap: 20px; margin: 40px 0; flex-wrap: wrap; }
+        .contact-card { text-decoration: none; color: var(--text-main); padding: 15px 25px; border: 1px solid var(--border); border-radius: 12px; display: flex; align-items: center; gap: 10px; transition: all 0.3s; }
+        
+        .whatsapp:hover { background: #25D366; color: white; border-color: #25D366; }
+        .email:hover { background: #EA4335; color: white; border-color: #EA4335; }
+
+        .update-info { margin-top: 20px; font-size: 0.8rem; color: var(--text-muted); }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .nav-links { display: none; }
         }
     </style>
 </head>
-<body>
+<body class="dark-theme">
+
+    <!-- Controles Flutuantes -->
+    <div class="theme-controls">
+        <button class="control-btn" id="theme-toggle" title="Mudar Tema">
+            <i class="fas fa-sun"></i>
+        </button>
+        <button class="control-btn" id="lang-toggle" title="Mudar Idioma">
+            EN
+        </button>
+    </div>
 
     <!-- Navegação -->
     <nav id="navbar">
         <div class="container nav-content">
             <div class="logo">WPH<span>.</span></div>
             <ul class="nav-links">
-                <li><a href="#sobre">Sobre</a></li>
-                <li><a href="#habilidades">Habilidades</a></li>
-                <li><a href="#experiencia">Carreira</a></li>
-                <li><a href="#formacao">Formação</a></li>
+                <li><a href="#sobre" data-key="nav-about">Sobre</a></li>
+                <li><a href="#formacao" data-key="nav-edu">Formação</a></li>
+                <li><a href="#habilidades" data-key="nav-skills">Habilidades</a></li>
+                <li><a href="#experiencia" data-key="nav-career">Carreira</a></li>
+                <li><a href="#contato" data-key="nav-contact-menu">Contato</a></li>
             </ul>
-            <a href="#contato" class="btn-contato">CONTATO</a>
         </div>
     </nav>
 
     <!-- Hero Section -->
     <header class="hero">
         <div class="container">
-            <span class="badge">ANÁLISE E DESENVOLVIMENTO DE SISTEMAS</span>
-            <h1>Walisson Patrick Helmer</h1>
-            <p>Estudante de ADS e especialista em gestão. Focado em transição para <strong>Desenvolvimento de Software e Suporte em TI</strong>.</p>
+            <span class="badge" data-key="hero-badge">ANÁLISE E DESENVOLVIMENTO DE SISTEMAS</span>
+            <h1 data-key="hero-title">Walisson Patrick Helmer</h1>
+            <p data-key="hero-desc">Estudante de ADS e especialista em gestão. Focado em transição para <strong>Desenvolvimento de Software e Suporte em TI</strong>.</p>
             <div class="hero-btns" style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
                 <a href="https://www.linkedin.com/in/walissonpatrickhelmer/" target="_blank" class="btn-secondary" style="background: #0077b5; color: white; border: none;">
                     <i class="fab fa-linkedin"></i> LinkedIn
                 </a>
-                <a href="https://drive.google.com/file/d/1873DnrIIadZ7PzL_2kNJ9v1WkpZ-6yc1/view?usp=drive_link" target="_blank" class="btn-primary">
-                    <i class="fas fa-download"></i> Baixar Currículo
+                <a href="https://drive.google.com/file/d/1873DnrIIadZ7PzL_2kNJ9v1WkpZ-6yc1/view?usp=drive_link" target="_blank" class="btn-primary" style="color: white;">
+                    <i class="fas fa-download"></i> <span data-key="btn-cv">Baixar Currículo</span>
                 </a>
-                <a href="https://github.com/WalissonPatrickHelmer" target="_blank" class="btn-secondary">
+                <a href="https://github.com/WalissonPatrickHelmer" target="_blank" class="btn-secondary btn-github">
                     <i class="fab fa-github"></i> GitHub
                 </a>
             </div>
         </div>
     </header>
 
-    <!-- Sobre / Objetivo -->
+    <!-- 1. SOBRE -->
     <section id="sobre" class="section-dark">
         <div class="container small">
             <div class="section-title">
                 <i class="fas fa-user text-emerald"></i>
-                <h2>OBJETIVO PROFISSIONAL</h2>
+                <h2 data-key="obj-title">OBJETIVO PROFISSIONAL</h2>
             </div>
             <div class="about-text">
-                <p>Estudante de <strong>Análise e Desenvolvimento de Sistemas</strong>, com experiência em gestão de empresas e equipes, atendimento ao cliente, suporte técnico e vendas.</p>
-                <blockquote class="quote">
-                    "Busco oportunidade de estágio nas áreas de Desenvolvimento de Sistemas ou Suporte em TI, com foco em aplicar meus conhecimentos técnicos, aprimorar minhas habilidades práticas e contribuir para a criação de soluções eficientes, colaborando com times multidisciplinares e agregando valor ao negócio."
+                <p data-key="obj-desc">Estudante de <strong>Análise e Desenvolvimento de Sistemas</strong>, com experiência em gestão de empresas e equipes, atendimento ao cliente, suporte técnico e vendas.</p>
+                <blockquote class="quote" data-key="obj-quote">
+                    "Busco oportunidade de estágio nas áreas de Desenvolvimento de Sistemas ou Suporte em TI, com foco em aplicar meus conhecimentos técnicos, aprimorar minhas habilidades práticas e contribuir para a criação de soluções eficientes."
                 </blockquote>
-            </div>
-            <div class="info-grid">
-                <div class="info-item"><i class="fas fa-map-marker-alt"></i> Belo Horizonte, MG (Lindeia)</div>
-                <div class="info-item"><i class="fas fa-check-circle"></i> Disponível para Estágio</div>
-                <div class="info-item"><i class="fas fa-code"></i> ADS @ Impacta</div>
             </div>
         </div>
     </section>
 
-    <!-- Formação Acadêmica -->
-    <section id="formacao" class="section">
+    <!-- 2. FORMAÇÃO -->
+    <section id="formacao">
         <div class="container small">
             <div class="section-title">
                 <i class="fas fa-graduation-cap text-emerald"></i>
-                <h2>FORMAÇÃO ACADÊMICA</h2>
+                <h2 data-key="edu-title">FORMAÇÃO ACADÊMICA</h2>
             </div>
-            <div class="edu-card" style="margin-bottom: 2rem;">
-                <h3>Análise e Desenvolvimento de Sistemas</h3>
-                <p>Faculdade Impacta | Conclusão prevista: Dezembro/2027</p>
+            <div class="edu-card no-box">
+                <h3 data-key="edu-1-h">Análise e Desenvolvimento de Sistemas</h3>
+                <p data-key="edu-1-p">Faculdade Impacta | Conclusão prevista: Dezembro/2027</p>
             </div>
-            <div class="edu-card">
-                <h3>Técnico em Programação e Jogos Digitais</h3>
-                <p>Formação Profissionalizante | 1200h</p>
+            <div class="edu-card no-box">
+                <h3 data-key="edu-2-h">Técnico em Programação e Jogos Digitais</h3>
+                <p data-key="edu-2-p">Formação Profissionalizante | 1200h</p>
             </div>
         </div>
     </section>
 
-    <!-- Habilidades -->
+    <!-- 3. HABILIDADES -->
     <section id="habilidades" class="section-dark">
         <div class="container">
-            <h2 class="text-center">HABILIDADES TÉCNICAS</h2>
+            <h2 class="text-center" data-key="skills-title">HABILIDADES TÉCNICAS</h2>
             <div class="skills-grid">
                 <div class="skill-card">
-                    <i class="fas fa-code"></i>
-                    <h3>Linguagens & Web</h3>
+                    <i class="fas fa-code text-emerald"></i>
+                    <h3 data-key="skill-1">Linguagens & Web</h3>
                     <div class="tags">
-                        <span>Python</span><span>HTML5</span><span>CSS3</span><span>SQL</span><span>Dreamweaver</span>
+                        <span>Python</span><span>HTML5</span><span>CSS3</span><span>SQL</span>
                     </div>
                 </div>
                 <div class="skill-card">
-                    <i class="fas fa-database"></i>
-                    <h3>Sistemas & Dados</h3>
+                    <i class="fas fa-database text-emerald"></i>
+                    <h3 data-key="skill-2">Sistemas & Dados</h3>
                     <div class="tags">
                         <span>Neo4j</span><span>Banco de Dados</span><span>Excel</span><span>Power BI</span><span>N8N</span>
                     </div>
                 </div>
                 <div class="skill-card">
-                    <i class="fas fa-microchip"></i>
-                    <h3>Hardware & Suporte</h3>
+                    <i class="fas fa-paint-brush text-emerald"></i>
+                    <h3 data-key="skill-4">Design & IA</h3>
                     <div class="tags">
-                        <span>Montagem de PCs</span><span>Manutenção</span><span>Suporte Técnico</span>
+                        <span>Photoshop</span><span>CorelDraw</span><span>IA</span>
                     </div>
                 </div>
                 <div class="skill-card">
-                    <i class="fas fa-paint-brush"></i>
-                    <h3>Design & IA</h3>
+                    <i class="fas fa-users text-emerald"></i>
+                    <h3 data-key="skill-5">Gestão & Vendas</h3>
                     <div class="tags">
-                        <span>Photoshop</span><span>CorelDraw</span><span>Engenharia de Prompt</span>
-                    </div>
-                </div>
-                <div class="skill-card">
-                    <i class="fas fa-users"></i>
-                    <h3>Gestão & Vendas</h3>
-                    <div class="tags">
-                        <span>Equipes</span><span>Vendas</span><span>Redes Sociais</span><span>Atendimento</span>
+                        <span>Liderança</span><span>Vendas</span><span>Atendimento</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Cursos e Certificações -->
-    <section id="certificacoes" class="section">
-        <div class="container">
-            <div class="section-title">
-                <i class="fas fa-certificate text-emerald"></i>
-                <h2>CURSOS E CERTIFICAÇÕES</h2>
-            </div>
-            <div class="certs-list">
-                <div class="cert-item" style="line-height: 2.2;">
-                    <p><strong>Embaixadores Universitários da DIO</strong></p>
-                    <p><strong>Automação com N8N básico</strong> – 26h</p>
-                    <p><strong>Inteligência Artificial</strong> – 40h (Ênfase em Engenharia de Prompt)</p>
-                    <p><strong>Jornada IA</strong> – Hashtag Treinamentos (8h) | <strong>Imersão em IA</strong> – Gran Faculdade (10h)</p>
-                    <p><strong>HTML5 e CSS3</strong> – Curso em Vídeo (200h) | <strong>Web Design</strong> (102h)</p>
-                    <p><strong>Design de Web: Introdução</strong> – Microsoft/SENAC (84h)</p>
-                    <p><strong>Hardware e Manutenção</strong> (96h) | <strong>Consultor de Vendas</strong> (80h)</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Experiência -->
-    <section id="experiencia" class="section-dark">
+    <!-- 4. CARREIRA (Experiência Profissional) -->
+    <section id="experiencia">
         <div class="container small">
             <div class="section-title">
                 <i class="fas fa-briefcase text-emerald"></i>
-                <h2>EXPERIÊNCIA PROFISSIONAL</h2>
+                <h2 data-key="exp-title">EXPERIÊNCIA PROFISSIONAL</h2>
             </div>
             <div class="timeline">
-                <div class="timeline-item">
+                <div class="timeline-item no-box">
                     <div class="time-header">
                         <h3>2P Sacolas Personalizadas</h3>
-                        <span>Atual</span>
+                        <span data-key="exp-now" style="color: var(--emerald); font-weight: 700;">Atual</span>
                     </div>
-                    <p class="role">CEO / Administrador / Logística / Compras</p>
-                    <p class="desc">Gestão de redes sociais, vendas, equipe e treinamentos. Controle financeiro, compras e estoque.</p>
+                    <p class="role" style="font-weight: 700;">CEO / Administrador</p>
+                    <p class="desc">Gestão de redes sociais, vendas, equipe e treinamentos. Controle financeiro e compras.</p>
                 </div>
-                <div class="timeline-item">
+                <div class="timeline-item no-box">
                     <div class="time-header">
                         <h3>Alma Viva do Brasil</h3>
-                        <span>Anterior</span>
+                        <span data-key="exp-prev">Anterior</span>
                     </div>
-                    <p class="role">Telemarketing e Suporte TI</p>
+                    <p class="role" style="font-weight: 700;">Telemarketing e Suporte TI</p>
                     <p class="desc">Atendimento técnico e suporte de primeiro nível em infraestrutura.</p>
                 </div>
-                <div class="timeline-item">
+                <div class="timeline-item no-box">
                     <div class="time-header">
                         <h3>Monticeli Buzzo “Chame o Gênio”</h3>
-                        <span>Anterior</span>
+                        <span data-key="exp-prev">Anterior</span>
                     </div>
-                    <p class="role">Atendimento Pós-Venda e Suporte TI</p>
-                    <p class="desc">Suporte técnico em produtos eletrônicos e atendimento ao cliente pré/pós-venda.</p>
-                </div>
-                <div class="timeline-item">
-                    <div class="time-header">
-                        <h3>Carrefour S.A.</h3>
-                        <span>Anterior</span>
-                    </div>
-                    <p class="role">Vendedor</p>
-                    <p class="desc">Vendas, pós-vendas e controle de estoque.</p>
+                    <p class="role" style="font-weight: 700;">Suporte TI</p>
+                    <p class="desc">Suporte técnico em produtos eletrônicos e atendimento ao cliente.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Rodapé -->
+    <!-- 5. CONTATO -->
     <footer id="contato">
         <div class="container text-center">
-            <h2>Interessado no meu perfil?</h2>
-            <p class="location">Belo Horizonte, MG • Lindeia • CEP: 30690-260</p>
+            <h2 data-key="foot-h2">Interessado no meu perfil?</h2>
             <div class="contact-links">
                 <a href="https://wa.me/5531993736336" target="_blank" class="contact-card whatsapp">
                     <i class="fab fa-whatsapp"></i> (31) 99373-6336
@@ -228,14 +330,53 @@
                     <i class="far fa-envelope"></i> wpatrickhelmer@gmail.com
                 </a>
             </div>
-            <div class="footer-bottom">
-                <div class="footer-info">
-                    <p><strong>Walisson Patrick Helmer</strong></p>
-                    <p>Análise e Desenvolvimento de Sistemas</p>
-                </div>
-            </div>
+            <p class="location">Belo Horizonte, MG • CEP: 30690-260</p>
+            
         </div>
     </footer>
 
+    <script>
+        // Sistema de Idioma
+        const langToggle = document.getElementById('lang-toggle');
+        let currentLang = 'pt';
+
+        const translations = {
+            pt: {
+                "nav-about": "Sobre", "nav-skills": "Habilidades", "nav-career": "Carreira", "nav-edu": "Formação", "nav-contact-menu": "Contato",
+                "hero-badge": "ANÁLISE E DESENVOLVIMENTO DE SISTEMAS", "hero-title": "Walisson Patrick Helmer",
+                "btn-cv": "Baixar Currículo", "obj-title": "OBJETIVO PROFISSIONAL",
+                "edu-title": "FORMAÇÃO ACADÊMICA", "skills-title": "HABILIDADES TÉCNICAS",
+                "exp-title": "EXPERIÊNCIA PROFISSIONAL", "foot-h2": "Interessado no meu perfil?",
+                "last-update": "Última alteração:"
+            },
+            en: {
+                "nav-about": "About", "nav-skills": "Skills", "nav-career": "Career", "nav-edu": "Education", "nav-contact-menu": "Contact",
+                "hero-badge": "SYSTEMS ANALYSIS AND DEVELOPMENT", "hero-title": "Walisson Patrick Helmer",
+                "btn-cv": "Download CV", "obj-title": "PROFESSIONAL OBJECTIVE",
+                "edu-title": "ACADEMIC BACKGROUND", "skills-title": "TECHNICAL SKILLS",
+                "exp-title": "PROFESSIONAL EXPERIENCE", "foot-h2": "Interested in my profile?",
+                "last-update": "Last update:"
+            }
+        };
+
+        langToggle.addEventListener('click', () => {
+            currentLang = currentLang === 'pt' ? 'en' : 'pt';
+            langToggle.innerText = currentLang === 'pt' ? 'EN' : 'PT';
+            document.querySelectorAll('[data-key]').forEach(element => {
+                const key = element.getAttribute('data-key');
+                if (translations[currentLang][key]) element.innerText = translations[currentLang][key];
+            });
+        });
+
+        // Sistema de Tema
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
+
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('light-theme');
+            const isLight = body.classList.contains('light-theme');
+            themeToggle.innerHTML = isLight ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
+        });
+    </script>
 </body>
 </html>
