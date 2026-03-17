@@ -125,16 +125,16 @@ section { padding: 80px 0; }
 .btn-whatsapp:hover { background: #25d366; color: white; }
 
 .btn-email { 
-    color: #ff0000; 
+    color: #25d366; 
     background: transparent; 
-    border: 1px solid #ff0000; 
+    border: 1px solid #25d366; 
 }
 .btn-email:hover { 
-    background: #ff0000; 
+    background: #25d366; 
     color: #ffffff; 
 }
 
-.copyright { color: var(--text-muted); font-size: 0.8rem; }
+.copyright { color: var(--text-muted); font-size: 0.9rem; }
 
 /* Responsividade */
 @media (max-width: 768px) {
