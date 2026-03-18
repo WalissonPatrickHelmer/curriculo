@@ -28,6 +28,7 @@ body.light-mode {
 /* estilos globais */
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 90px;
 }
 
 body {     
